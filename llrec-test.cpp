@@ -66,9 +66,12 @@ void dealloc(Node* head)
 //   Add any helper functions or
 //   function object struct declarations
 // -----------------------------------------------
-
-
-
+struct IsEven {
+  bool operator()(int val) {
+    // return true for even numbers
+    return val % 2 == 0;
+  }
+};
 
 
 int main(int argc, char* argv[])
@@ -87,8 +90,12 @@ int main(int argc, char* argv[])
 
     // Test out your linked list code
 
+    // llfilter
+    head = llfilter(head, IsEven());
+    cout << "Filtered list with only odd numbers: ";
+    print(head);
 
-
+    dealloc(head);
     
     return 0;
 

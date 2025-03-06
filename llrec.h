@@ -84,7 +84,23 @@ Node* llfilter(Node* head, Comp pred)
     // Provide your implementation below
     //*********************************************
 
+    // base case
+    if(!head) {
+        return nullptr;
+    }
 
+    // recursive case
+    head->next = llfilter(head->next, pred);
+
+    if(pred(head->val) == true) {
+        // save next node
+        Node* toDelete = head;
+        // free current node
+        head = head->next;
+        // return new head
+        delete toDelete;
+    }
+    return head;
 }
 
 #endif
